@@ -113,15 +113,55 @@ const arrIcons = [
 	}
 ];
 
+let arrTypes = [] 
+
+
 
 const eleIconsContainer = document.querySelector('.icons-container');
+const eleSelection = document.querySelector('.filter');
 
-arrIcons.forEach(icon => {
-	const eleIcon = document.createElement('div');
-	eleIcon.classList.add('icon');
-	eleIcon.dataset.icontype = icon.type
-	eleIconsContainer.append(eleIcon);
-	eleIcon.innerHTML = `<i class="${icon.family} ${icon.prefix}${icon.name} ${icon.color}"></i>
-						 <div>${icon.name.toUpperCase()}</div>
-						`
+function iconGeneration(arrIcons, eleIconsContainer) {
+	eleIconsContainer.innerHTML = '';
+	arrIcons.forEach(icon => {
+		const eleIcon = document.createElement('div');
+		eleIcon.classList.add('icon');
+		eleIcon.dataset.icontype = icon.type
+		eleIconsContainer.append(eleIcon);
+		eleIcon.innerHTML = `<i class="${icon.family} ${icon.prefix}${icon.name} ${icon.color}"></i>
+							 <div>${icon.name.toUpperCase()}</div>
+							`
+	})
+
+}
+
+iconGeneration(arrIcons, eleIconsContainer)
+
+arrIcons.forEach(icons => {
+	if (!arrTypes.includes(icons.type)) {
+		arrTypes.push(icons.type)
+	}
 })
+
+arrTypes.forEach(type => {
+	const eleOption = document.createElement('option');
+	eleOption.value = type
+	eleOption.innerHTML = type
+	eleSelection.append(eleOption);
+})
+
+eleSelection.addEventListener('change', filterIcons);
+
+function filterIcons() {
+	const typeSelected = this.value;
+	
+	if (typeSelected != 'all') {
+		const filteredIcons = arrIcons.filter(Icons => {
+			if (Icons.type == typeSelected) {
+				return true
+			}
+		})
+		iconGeneration(filteredIcons, eleIconsContainer)
+	}else {
+		iconGeneration(arrIcons, eleIconsContainer)
+	}
+}
