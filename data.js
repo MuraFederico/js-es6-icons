@@ -119,6 +119,7 @@ const eleIconsContainer = document.querySelector('.icons-container');
 arrIcons.forEach(icon => {
 	const eleIcon = document.createElement('div');
 	eleIcon.classList.add('icon');
+	eleIcon.dataset.icontype = icon.type
 	eleIconsContainer.append(eleIcon);
 	eleIcon.innerHTML = `<i class="${icon.family} ${icon.prefix}${icon.name} ${icon.color}"></i>
 						 <div>${icon.name.toUpperCase()}</div>
