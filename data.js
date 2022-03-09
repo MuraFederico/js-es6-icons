@@ -115,10 +115,18 @@ const arrIcons = [
 
 let arrTypes = [] 
 
-
+const arrHex = [0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F'];
 
 const eleIconsContainer = document.querySelector('.icons-container');
 const eleSelection = document.querySelector('.filter');
+
+
+
+iconGeneration(arrIcons, eleIconsContainer)
+
+eleSelection.addEventListener('change', filterIcons);
+
+///// DICHIARAZIONI FUNZIONI /////
 
 function iconGeneration(arrIcons, eleIconsContainer) {
 	eleIconsContainer.innerHTML = '';
@@ -127,14 +135,12 @@ function iconGeneration(arrIcons, eleIconsContainer) {
 		eleIcon.classList.add('icon');
 		eleIcon.dataset.icontype = icon.type
 		eleIconsContainer.append(eleIcon);
-		eleIcon.innerHTML = `<i class="${icon.family} ${icon.prefix}${icon.name} ${icon.color}"></i>
+		eleIcon.innerHTML = `<i class="${icon.family} ${icon.prefix}${icon.name}" style="color:#${randomHex(arrHex)};"></i>
 							 <div>${icon.name.toUpperCase()}</div>
 							`
 	})
 
 }
-
-iconGeneration(arrIcons, eleIconsContainer)
 
 arrIcons.forEach(icons => {
 	if (!arrTypes.includes(icons.type)) {
@@ -149,8 +155,6 @@ arrTypes.forEach(type => {
 	eleSelection.append(eleOption);
 })
 
-eleSelection.addEventListener('change', filterIcons);
-
 function filterIcons() {
 	const typeSelected = this.value;
 	
@@ -164,4 +168,16 @@ function filterIcons() {
 	}else {
 		iconGeneration(arrIcons, eleIconsContainer)
 	}
+}
+
+function randomIndex() {
+	return Math.floor(Math.random() * 16);
+}
+
+function randomHex(arrHex) {
+	let hex = ''
+	for (let i = 0; i < 6; i++) {
+		hex += arrHex[randomIndex()];	
+	}
+	return hex
 }
