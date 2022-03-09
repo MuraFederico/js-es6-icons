@@ -1,0 +1,66 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background-color: #dddddd;
+}
+
+header {
+    padding-top: 1em;
+    background-color: white;
+}
+
+nav {
+    padding: 2em;
+    background-color: #29b1dd;
+    color: white;
+    text-align: center;
+}
+
+main {
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.icons-container {
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+}
+
+.icon {
+    
+    width: calc(100% / 4 - 160px);
+    margin: 1em 80px;
+    padding: 1em 0;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: white;
+    border-radius: .5em;
+}
+
+.icon > i {
+    font-size: 30px;
+}
+
+.orange {
+    color: orange;
+}
+
+.green {
+    color: green;
+}
+
+.blue {
+    color: blue;
+}
+
