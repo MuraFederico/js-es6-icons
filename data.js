@@ -128,6 +128,7 @@ eleSelection.addEventListener('change', filterIcons);
 
 ///// DICHIARAZIONI FUNZIONI /////
 
+///// GENERAZIONE ELEMENTI HTML /////
 function iconGeneration(arrIcons, eleIconsContainer) {
 	eleIconsContainer.innerHTML = '';
 	arrIcons.forEach(icon => {
@@ -142,12 +143,14 @@ function iconGeneration(arrIcons, eleIconsContainer) {
 
 }
 
+///// PUSH DEI TYPE IN ARRAY TIPES /////
 arrIcons.forEach(icons => {
 	if (!arrTypes.includes(icons.type)) {
 		arrTypes.push(icons.type)
 	}
 })
 
+///// POPOLAZIONE DEL SELECT CON ELEMENTI DI ARRAY TYPES /////
 arrTypes.forEach(type => {
 	const eleOption = document.createElement('option');
 	eleOption.value = type
@@ -155,6 +158,7 @@ arrTypes.forEach(type => {
 	eleSelection.append(eleOption);
 })
 
+///// GENERAZIONE DI UN ARRAY FILTRATA /////
 function filterIcons() {
 	const typeSelected = this.value;
 	
@@ -170,10 +174,12 @@ function filterIcons() {
 	}
 }
 
+
 function randomIndex() {
 	return Math.floor(Math.random() * 16);
 }
 
+///// GENERAZIONE COLORE HEX RANDOM /////
 function randomHex(arrHex) {
 	let hex = ''
 	for (let i = 0; i < 6; i++) {
